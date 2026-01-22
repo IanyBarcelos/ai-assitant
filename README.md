@@ -1,77 +1,77 @@
-# Assistente de IA com Ferramentas (Desafio Técnico - Vaga AI Engineer Júnior)
+# IA assistant with tools (Desafio Técnico - Vaga AI Engineer Júnior)
 
-Este projeto é uma implementação de um agente de Inteligência Artificial capaz de conversar naturalmente e utilizar ferramentas externas quando necessário. 
-
-
-## Funcionalidades:
-O assistente possui os seguintes "superpoderes":
-
-- Conversa Geral: Responde a perguntas de conhecimento geral usando o modelo de linguagem.
-
-- Calculadora: Identifica operações matemáticas e executa o cálculo exato via código.
+This project implements an Artificial Intelligence agent capable of engaging in a natural conversation and invoking external tools when necessary.
 
 
-## Tecnologias Utilizadas:
+## Features:
+The assistant has the following “superpowers”:
+
+- General Conversation: Answers general knowledge questions directly using the language model.
+
+- Calculator: Detects mathematical operations and performs exact calculations through code execution.
+
+
+## Used technologies:
 - Python 3.10+
 
-- LangChain & LangGraph: Frameworks para orquestração do agente.
+- LangChain & LangGraph: Frameworks for agent orchestration.
 
-- Ollama: Para rodar o LLM localmente de forma gratuita e privada.
+- Ollama: Used to run the LLM locally, providing a free and privacy-preserving setup.
 
 
-## Pré-requisitos e Instalação:
+## Requirements and Installation:
 
-Este projeto utiliza modelos locais para evitar custos. Por esse motivo, é necessário instalar o Ollama.
+This project uses local language models to avoid external API costs. For this reason, it is necessary to install Ollama.
 
-1. Instale o Ollama
+1. Install Ollama
 
-Acesse o site: https://ollama.com/ e siga as intruções oficiais de instalação para o seu sistema operacional.
+Visit the official website: https://ollama.com/ and follow the installation instructions for your operating system.
 
-2. Baixe o modelo utilizado
+2. Download the required model
 
-No seu terminal, execute o comando abaixo para baixar o modelo Llama 3.1 (8B):
+In your terminal, run the command below to download the Llama 3.1 (8B) model:
 
 ```Bash
 ollama pull llama3.1:8b
 ```
 
-3. Clone o repositório e instale as dependências
+3. Clone the repository and install dependencies
 
 ```
-git clone <URL_DO_REPOSITORIO>
-cd <NOME_DO_REPOSITORIO>
+git clone <REPOSITORY_URL>
+cd <REPOSITORY_NAME>
 pip install -r requirements.txt
 ```
 
 
-## Como Executar
-Antes de iniciar a aplicação, certifique-se de que o serviço do Ollama está em execução em segundo plano.
+## How to Run
+Before starting the application, make sure that the Ollama service is running in the background.
 
-1. Execute o script principal:
+1. Run the main script
 
 ```Bash
 python main.py
 ```
-2. Interaja com o assistente via terminal
+2. Interact with the assistant via the terminal
 
-Após a inicialização, o assistente ficará aguardando entradas do usuário no CLI.
+After initialization, the assistant will wait for user input through the CLI.
 
-Para encerrar a execução, digite exit ou sair.
-
-
-## Lógica de Implementação
-Em síntese, a solução foi estruturada pensando no modelo como um "roteador" com a habilidade de Reasoning e action, interpretando a solicitação do usuário e definindo qual ferramenta utilizar para a resposta final.
-
-Escolhi llama3.1:8b via Ollama por se tratar de um modelo local, com boa capacidade de seguir instruções e realizar chamadas de ferramentas de forma consistente. A temperatura foi configurada como zero para maximizar seu determinismo, especialmente no processo de decisão sobre quando utilizar ferramentas externas e evitar alucinações em suas respostas.
-
-As ferramentas foram definidas como funções Python simples, decoradas com @tool, cada uma acompanhada de docstrings descritivas, permitindo que o modelo compreenda corretamente o propósito da função, seus parâmetros e em quais contextos ela deve ser acionada.
-
-O prompt do sistema foi projetado para reforçar explicitamente que operações matemáticas devem ser delegadas à ferramenta de cálculo, evitando que o modelo tente inferir resultados.
+To exit the application, type exit or sair.
 
 
-## Aprendizados e Melhorias Futuras
-Durante o desenvolvimento deste desafio, aprendi e reforcei conceitos importantes sobre LLMs e o uso de modelos pré-treinados. Especialmente no que se refere a importância de prompts de sistema bem definidos para evitar que o modelo ignore as ferramentas e induzi-lo a decidir corretamente quando delegar as tarefas a ferramentas externas, evitando tanto alucinações quanto o uso indevido dessas ferramentas.
+## Implementation Logic
+In summary, the solution was structured by treating the model as a router with reasoning and action capabilities, responsible for interpreting the user’s request and deciding which tool should be used to produce the final response.
 
-Por exemplo, durante o desenvolvimento, tentei ainda integrar uma ferramenta de consulta à Wikipedia de forma condicional, apenas quando o modelo identificasse a necessidade de informações mais completas. Porém, ficou claro que ao trabalhar com modelos pré-treinados, controlar o comportamento do agente apenas por meio de prompt engineering pode ser complicado, especialmente em cenários que exigem decisões mais críticas sobre o uso de ferramentas.
+The llama3.1:8b model was chosen via Ollama because it is a local model with a strong ability to follow instructions and perform tool calls in a consistent manner. The temperature was set to zero to maximize determinism, particularly during the decision-making process of whether to invoke external tools, and to reduce hallucinations in the responses.
 
-Como melhorias futuras, com mais tempo de desenvolvimento, eu substituiria a CLI por uma interface gráfica mais amigável ao usuário, tornando o sistema mais acessível. Além disso, integraria uma ferramenta de consulta a notícias ou fontes atualizadas, permitindo que o assistente respondesse a eventos mais recentes.
+The tools were implemented as simple Python functions decorated with @tool, each accompanied by descriptive docstrings. This allows the model to correctly understand the purpose of each function, its parameters, and the contexts in which it should be invoked.
+
+The system prompt was carefully designed to explicitly enforce that mathematical operations must be delegated to the calculator tool, preventing the model from attempting to infer numerical results on its own.
+
+
+## Lessons Learned and Future Improvements
+During the development of this challenge, I learned and reinforced important concepts related to LLMs and the use of pretrained models, particularly the importance of well-defined system prompts to prevent the model from ignoring tools and to guide it in correctly deciding when to delegate tasks to external tools. This helps reduce both hallucinations and improper tool usage.
+
+For example, during the development I attempted to integrate a Wikipedia query tool in a conditional manner, so that it would only be used when the model identified the need for more comprehensive information. However, this made it clear that when working with pretrained models, controlling agent behavior solely through prompt engineering can be challenging, especially in scenarios that require more critical decisions regarding tool usage.
+
+As future improvements, with additional development time, I would replace the CLI with a more user-friendly graphical interface, making the system more accessible. In addition, I would integrate a news or up-to-date information tool, enabling the assistant to respond to more recent events.
