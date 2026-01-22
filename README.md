@@ -71,6 +71,7 @@ O prompt do sistema foi projetado para reforçar explicitamente que operações 
 
 ## Aprendizados e Melhorias Futuras
 Durante o desenvolvimento deste desafio, aprendi e reforcei conceitos importantes sobre LLMs e o uso de modelos pré-treinados. Especialmente no que se refere a importância de prompts de sistema bem definidos para evitar que o modelo ignore as ferramentas e induzi-lo a decidir corretamente quando delegar as tarefas a ferramentas externas, evitando tanto alucinações quanto o uso indevido dessas ferramentas.
+
 Por exemplo, durante o desenvolvimento, tentei ainda integrar uma ferramenta de consulta à Wikipedia de forma condicional, apenas quando o modelo identificasse a necessidade de informações mais completas. Porém, ficou claro que ao trabalhar com modelos pré-treinados, controlar o comportamento do agente apenas por meio de prompt engineering pode ser complicado, especialmente em cenários que exigem decisões mais críticas sobre o uso de ferramentas.
 
 Como melhorias futuras, com mais tempo de desenvolvimento, eu substituiria a CLI por uma interface gráfica mais amigável ao usuário, tornando o sistema mais acessível. Além disso, integraria uma ferramenta de consulta a notícias ou fontes atualizadas, permitindo que o assistente respondesse a eventos mais recentes.
